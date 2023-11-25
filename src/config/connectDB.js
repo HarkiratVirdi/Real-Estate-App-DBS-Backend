@@ -8,7 +8,7 @@ const dbConfig = {
 
 const executeQuery = (query, params = {}) => {
   let connection;
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     oracledb.getConnection(dbConfig, async (err, connection) => {
       connection = connection;
       if (err) {
@@ -20,10 +20,13 @@ const executeQuery = (query, params = {}) => {
         outFormat: oracledb.OUT_FORMAT_OBJECT,
       });
 
+      await connection.commit();
       resolve(result.rows);
     });
 
     if (connection) {
+      console.log('in connection');
+
       connection.close().catch((error) => {
         console.error('Error closing Oracle connection:', error);
       });

@@ -2,8 +2,8 @@ const staffQueries = {
   getAllStaff: () => 'select * from dh_staff',
   addNewStaff: () => '',
   deleteStaff: () => '',
-  updateSalary: (newSalary, staffId) =>
-    `Update dh_staff SET Salary='${newSalary}' where staffId='${staffId}'; Commit;`,
+  updateStaff: (newSalary, telephone, email, staffId) =>
+    `Update dh_staff SET Salary='${newSalary}', Telephone='${telephone}', email='${email}' where staffNo='${staffId}'`,
 };
 
 const branchQueries = {
@@ -51,8 +51,9 @@ const clientQueries = {
 )
 VALUES (
   ${CLIENTNO}, ${FNAME}, ${LNAME}, ${TELNO}, ${STREET}, ${CITY}, ${EMAIL}, ${PREFTYPE}, ${MAXRENT}
-);
-COMMIT;`,
+)`,
 };
 
-module.exports = { staffQueries, branchQueries, clientQueries };
+const CommitQuery = () => 'Commit';
+
+module.exports = { staffQueries, branchQueries, clientQueries, CommitQuery };

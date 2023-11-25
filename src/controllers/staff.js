@@ -1,5 +1,5 @@
 const { executeQuery } = require('../config/connectDB');
-const { staffQueries } = require('../queries/queries');
+const { staffQueries, CommitQuery } = require('../queries/queries');
 const {
   createErrorResponse,
   createSuccessResponse,
@@ -30,13 +30,23 @@ const addNewStaff = async (req, res) => {
   }
 };
 
-const updateSalary = async (req, res) => {
+const updateStaff = async (req, res) => {
   const staffId = req.params.id;
-  const newStaffSalary = req.body.salary;
   try {
     const result = await executeQuery(
-      staffQueries.updateSalary(newStaffSalary, staffId)
+      staffQueries.updateStaff(
+        req.body.salary,
+        req.body.telephone,
+        req.body.email,
+        staffId
+      )
     );
+
+    if (result) {
+      await executeQuery('COMMIT');
+      console.log('committing');
+    }
+
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
     console.log('error', error);
@@ -48,4 +58,4 @@ const updateSalary = async (req, res) => {
   }
 };
 
-module.exports = { getAllStaff, addNewStaff, updateSalary };
+module.exports = { getAllStaff, addNewStaff, updateStaff };
