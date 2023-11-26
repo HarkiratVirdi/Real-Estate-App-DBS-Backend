@@ -10,8 +10,8 @@ const branchQueries = {
   getAllBranches: () => 'select * from dh_branch',
   getBranchById: (branchId) =>
     `select * from dh_branch where branchno='${branchId}'`,
-  updateBranchDetails: (city, street, branchId) =>
-    `Update dh_branch SET CITY='${city}', STREET='${street}' where branchno='${branchId}'; Commit;`,
+  updateBranchDetails: (city, street, postcode, branchId) =>
+    `Update dh_branch SET CITY='${city}', STREET='${street}', POSTCODE='${postcode}' where branchno='${branchId}'`,
   addNewBranch: (branchno, street, city, postCode) => `INSERT INTO dh_branch(
       BRANCHNO,
       STREET,
@@ -20,8 +20,7 @@ const branchQueries = {
   )
   VALUES (
     ${branchno}, ${street}, ${city}, ${postCode}
-  );
-  COMMIT;`,
+  )`,
 };
 
 const clientQueries = {
