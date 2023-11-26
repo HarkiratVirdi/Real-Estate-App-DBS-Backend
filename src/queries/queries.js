@@ -19,7 +19,7 @@ const branchQueries = {
       POSTCODE
   )
   VALUES (
-    ${branchno}, ${street}, ${city}, ${postCode}
+    '${branchno}', '${street}', '${city}', '${postCode}'
   )`,
 };
 

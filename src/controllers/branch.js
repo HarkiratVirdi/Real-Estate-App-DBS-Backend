@@ -46,4 +46,20 @@ const updateBranch = async (req, res) => {
   }
 };
 
-module.exports = { getAllBranch, getBranchById, updateBranch };
+const addBranch = async (req, res) => {
+  try {
+    const query = branchQueries.addNewBranch(
+      req.body.branchNo,
+      req.body.street,
+      req.body.city,
+      req.body.postcode
+    );
+
+    const result = await executeQuery(query);
+    return res.status(200).json(createSuccessResponse({ data: result }));
+  } catch (err) {
+    res.status(403).json(createErrorResponse('Error Adding new Branch'));
+  }
+};
+
+module.exports = { getAllBranch, getBranchById, updateBranch, addBranch };
