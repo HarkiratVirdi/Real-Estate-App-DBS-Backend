@@ -49,10 +49,8 @@ const clientQueries = {
     MAXRENT
 )
 VALUES (
-  ${CLIENTNO}, ${FNAME}, ${LNAME}, ${TELNO}, ${STREET}, ${CITY}, ${EMAIL}, ${PREFTYPE}, ${MAXRENT}
+  '${CLIENTNO}', '${FNAME}', '${LNAME}', '${TELNO}', '${STREET}', '${CITY}', '${EMAIL}', '${PREFTYPE}', '${MAXRENT}'
 )`,
 };
 
-const CommitQuery = () => 'Commit';
-
-module.exports = { staffQueries, branchQueries, clientQueries, CommitQuery };
+module.exports = { staffQueries, branchQueries, clientQueries };

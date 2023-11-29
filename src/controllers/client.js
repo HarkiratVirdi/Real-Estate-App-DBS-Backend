@@ -45,7 +45,8 @@ const addClient = async (req, res) => {
         req.body.fname,
         req.body.lname,
         req.body.telno,
-        req.body.street.req.body.city,
+        req.body.street,
+        req.body.city,
         req.body.email,
         req.body.preftype,
         req.body.maxrent
