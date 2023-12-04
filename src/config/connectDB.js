@@ -16,6 +16,8 @@ const executeQuery = (query, params = {}) => {
         return;
       }
 
+      console.log('QUERY EXECUTED: ', query);
+
       const result = await connection.execute(query, params, {
         outFormat: oracledb.OUT_FORMAT_OBJECT,
       });

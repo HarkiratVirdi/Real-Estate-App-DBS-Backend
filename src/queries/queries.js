@@ -1,6 +1,33 @@
 const staffQueries = {
   getAllStaff: () => 'select * from dh_staff',
-  addNewStaff: () => '',
+  addNewStaff: (
+    STAFFNO,
+    FNAME,
+    LNAME,
+    POSITION,
+    SEX,
+    DOB,
+    SALARY,
+    BRANCHNO,
+    TELEPHONE,
+    MOBILE,
+    EMAIL
+  ) => `INSERT INTO dh_staff(
+    STAFFNO,
+    FNAME,
+    LNAME,
+    POSITION,
+    SEX,
+    DOB,
+    SALARY,
+    BRANCHNO,
+    TELEPHONE,
+    MOBILE,
+    EMAIL
+)
+VALUES (
+  '${STAFFNO}', '${FNAME}', '${LNAME}', '${POSITION}', '${SEX}', TO_DATE('${DOB}', 'YY-MM-DD'), '${SALARY}', '${BRANCHNO}', '${TELEPHONE}', '${MOBILE}', '${EMAIL}'
+)`,
   deleteStaff: () => '',
   updateStaff: (newSalary, telephone, email, staffId) =>
     `Update dh_staff SET Salary='${newSalary}', Telephone='${telephone}', email='${email}' where staffNo='${staffId}'`,

@@ -11,7 +11,7 @@ const getAllStaff = async (req, res) => {
     console.log('result', result);
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
       .json(createErrorResponse('Error Fetching all staff info'));
@@ -20,10 +20,24 @@ const getAllStaff = async (req, res) => {
 
 const addNewStaff = async (req, res) => {
   try {
-    const result = await executeQuery(staffQueries.getAllStaff());
+    const result = await executeQuery(
+      staffQueries.addNewStaff(
+        req.body.STAFFNO,
+        req.body.FNAME,
+        req.body.LNAME,
+        req.body.POSITION,
+        req.body.SEX,
+        req.body.DOB,
+        req.body.SALARY,
+        req.body.BRANCHNO,
+        req.body.TELEPHONE,
+        req.body.MOBILE,
+        req.body.EMAIL
+      )
+    );
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
       .json(createErrorResponse('Error adding new staff member'));
@@ -42,14 +56,9 @@ const updateStaff = async (req, res) => {
       )
     );
 
-    if (result) {
-      await executeQuery('COMMIT');
-      console.log('committing');
-    }
-
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
       .json(
