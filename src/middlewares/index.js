@@ -7,9 +7,9 @@ module.exports.notFound = (req, res, next) => {
 module.exports.errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
 
-  if (statusCode > 499) {
-    logger.error({ err }, `Error processing request`);
-  }
+  // if (statusCode > 499) {
+  //   logger.error({ err }, `Error processing request`);
+  // }
 
   res.status(statusCode);
   res.json({

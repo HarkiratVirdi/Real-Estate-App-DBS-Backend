@@ -10,10 +10,10 @@ const getAllBranch = async (req, res) => {
     const result = await executeQuery(branchQueries.getAllBranches());
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error Fetching all branch info'));
+      .json(createErrorResponse(403, 'Error Fetching all branch info'));
   }
 };
 
@@ -25,7 +25,7 @@ const getBranchById = async (req, res) => {
   } catch (err) {
     return res
       .status(403)
-      .json(createErrorResponse('Error Fetching branch info'));
+      .json(createErrorResponse(403, 'Error Fetching branch info'));
   }
 };
 
@@ -42,7 +42,7 @@ const updateBranch = async (req, res) => {
   } catch (err) {
     return res
       .status(403)
-      .json(createErrorResponse('Error updating branch info'));
+      .json(createErrorResponse(403, 'Error updating branch info'));
   }
 };
 
@@ -58,7 +58,7 @@ const addBranch = async (req, res) => {
     const result = await executeQuery(query);
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    res.status(403).json(createErrorResponse('Error Adding new Branch'));
+    res.status(403).json(createErrorResponse(403, 'Error Adding new Branch'));
   }
 };
 

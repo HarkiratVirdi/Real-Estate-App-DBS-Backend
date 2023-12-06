@@ -13,22 +13,25 @@ const executeQuery = (query, params = {}) => {
       connection = connection;
       if (err) {
         console.error(err.message);
-        return;
+        return reject(err.message);
       }
 
       console.log('QUERY EXECUTED: ', query);
 
-      const result = await connection.execute(query, params, {
-        outFormat: oracledb.OUT_FORMAT_OBJECT,
-      });
+      try {
+        const result = await connection.execute(query, params, {
+          outFormat: oracledb.OUT_FORMAT_OBJECT,
+        });
 
-      await connection.commit();
-      resolve(result.rows);
+        await connection.commit();
+        resolve(result.rows);
+      } catch (Oerror) {
+        console.log('oracle error', Oerror);
+        reject(Oerror.message);
+      }
     });
 
     if (connection) {
-      console.log('in connection');
-
       connection.close().catch((error) => {
         console.error('Error closing Oracle connection:', error);
       });

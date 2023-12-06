@@ -10,14 +10,15 @@ const getAllClients = async (req, res) => {
     const result = await executeQuery(clientQueries.getAllClients());
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error Fetching all client info'));
+      .json(createErrorResponse(403, 'Error Fetching all client info'));
   }
 };
 
 const updateClient = async (req, res) => {
+  const clientNo = req.params.id;
   try {
     const result = await executeQuery(
       clientQueries.updateClient(
@@ -25,15 +26,16 @@ const updateClient = async (req, res) => {
         req.body.lname,
         req.body.telno,
         req.body.city,
-        req.body.street
+        req.body.street,
+        clientNo
       )
     );
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error updating client info'));
+      .json(createErrorResponse(403, 'Error updating client info'));
   }
 };
 
@@ -54,10 +56,10 @@ const addClient = async (req, res) => {
     );
     return res.status(200).json(createSuccessResponse({ data: result }));
   } catch (err) {
-    console.log('error', error);
+    console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error adding new client info'));
+      .json(createErrorResponse(403, 'Error adding new client info'));
   }
 };
 

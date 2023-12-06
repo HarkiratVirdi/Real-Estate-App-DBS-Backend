@@ -1,5 +1,5 @@
 const { executeQuery } = require('../config/connectDB');
-const { staffQueries, CommitQuery } = require('../queries/queries');
+const { staffQueries } = require('../queries/queries');
 const {
   createErrorResponse,
   createSuccessResponse,
@@ -14,7 +14,7 @@ const getAllStaff = async (req, res) => {
     console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error Fetching all staff info'));
+      .json(createErrorResponse(403, 'Error Fetching all staff info'));
   }
 };
 
@@ -40,7 +40,7 @@ const addNewStaff = async (req, res) => {
     console.log('error', err);
     return res
       .status(403)
-      .json(createErrorResponse('Error adding new staff member'));
+      .json(createErrorResponse(403, 'Error adding new staff member'));
   }
 };
 
@@ -62,7 +62,10 @@ const updateStaff = async (req, res) => {
     return res
       .status(403)
       .json(
-        createErrorResponse(`Error updating salary for staff member ${staffId}`)
+        createErrorResponse(
+          403,
+          `Error updating salary for staff member ${staffId}`
+        )
       );
   }
 };

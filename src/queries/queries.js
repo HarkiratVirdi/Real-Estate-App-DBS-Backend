@@ -52,8 +52,8 @@ const branchQueries = {
 
 const clientQueries = {
   getAllClients: () => 'select * from dh_client',
-  updateClient: (fname, lname, telno, city, street) =>
-    `Update dh_staff SET FNAME='${fname}', LNAME=${lname}, TELNO=${telno}, CITY=${city}, STREET=${street} where staffId='${staffId}'; Commit;`,
+  updateClient: (fname, lname, telno, city, street, clientNo) =>
+    `Update dh_client SET FNAME='${fname}', LNAME=${lname}, TELNO=${telno}, CITY=${city}, STREET=${street} where clientNo='${clientNo}'`,
   addNewClient: (
     CLIENTNO,
     FNAME,
