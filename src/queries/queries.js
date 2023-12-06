@@ -53,7 +53,7 @@ const branchQueries = {
 const clientQueries = {
   getAllClients: () => 'select * from dh_client',
   updateClient: (fname, lname, telno, city, street, clientNo) =>
-    `Update dh_client SET FNAME='${fname}', LNAME=${lname}, TELNO=${telno}, CITY=${city}, STREET=${street} where clientNo='${clientNo}'`,
+    `Update dh_client SET FNAME='${fname}', LNAME='${lname}', TELNO='${telno}', CITY='${city}', STREET='${street}' where clientNo='${clientNo}'`,
   addNewClient: (
     CLIENTNO,
     FNAME,
