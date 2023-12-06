@@ -1,9 +1,10 @@
 const oracledb = require('oracledb');
 
+//oracle DB credentials
 const dbConfig = {
-  user: 'dbs501_233v1a18',
-  password: '58421552',
-  connectString: 'myoracle12c.senecacollege.ca:1521/oracle12c',
+  user: 'enter_your_user_name',
+  password: 'enter_your_password',
+  connectString: 'enter_the_connect_string',
 };
 
 const executeQuery = (query, params = {}) => {
